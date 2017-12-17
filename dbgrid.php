@@ -5,7 +5,7 @@
 // send feedback or questions iansoko at gmail
 // version 2017-10-30
 
-class lazy_mofo{
+class DBGrid{
 
     public $dbh = false;                    // required, pass the PDO connection object into the constructor
     public $table = '';                     // required, table for use for sql_insert(), sql_update(), sql_update_grid() and sql_delete()
@@ -180,9 +180,10 @@ class lazy_mofo{
 
         // load requested internationalization file, en-us is defined above, in this class
         if(strlen($i18n) > 0 && $i18n != 'en-us'){
-            if(!file_exists("i18n/{$i18n}.php"))
-                die("Error: Requested i18n file ({$i18n}.php) does not exists.");
-            include("i18n/{$i18n}.php");    
+            $fileName  = __DIR__ . "/$" . $i18n . ".php";
+            if(!file_exists($fileName))
+                die("Error: Requested i18n file $fileName does not exists.");
+            include($fileName);    
         }
     }
 
